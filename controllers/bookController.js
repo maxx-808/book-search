@@ -21,7 +21,7 @@ module.exports = {
     const KEY = process.env.API_KEY;
     try {
       const searching = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchParam}&key=${KEY}`
+        `https://www.googleapis.com/books/v1/volumes?q=${searchParam}&key=${KEY}&maxResults=20`
       );
       res.json(searching);
       console.log("searching ", searching);
