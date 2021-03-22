@@ -1,13 +1,29 @@
 const express = require("express");
 const path = require("path");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const app = express();
+const mongoose = require("mongoose");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
+//mongoose connection
+mongoose.connect(
+  process.env.MONGO_URI || "mongodb://localhost/googlebooks",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: true,
+  },
+  (err) => {
+    if (err) throw err;
+    console.log("connected to mongodb");
+  }
+);
+
+if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));
 }
 
