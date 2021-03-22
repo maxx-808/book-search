@@ -34,4 +34,16 @@ module.exports = {
       return false;
     }
   },
+
+  deleteBook: async (req, res) => {
+    console.log("deleted book");
+
+    try {
+      const delBook = await Book.findById({ _id: req.params.id })
+        .then((book) => book.remove())
+        .then((book) => res.json(book));
+    } catch (err) {
+      console.log("error deleting ", err);
+    }
+  },
 };
