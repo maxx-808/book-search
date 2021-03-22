@@ -28,6 +28,8 @@ if (process.env.NODE_ENV == "production") {
 }
 
 // Define API routes here
+app.use("/api/search", require("./routes/searchRoutes"));
+app.use("/api/db", require("./routes/dbRoutes"));
 
 // Send every other request to the React app
 // Define any API routes before this runs
